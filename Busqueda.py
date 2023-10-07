@@ -3,7 +3,7 @@ class SistemaReportes:
         self.reportes = {
             "CategoriaA": ["Reporte1", "Reporte2"],
             "CategoriaB": ["Reporte3", "Reporte4"]
-            # Agrega más categorías y reportes según sea necesario
+            
         }
 
     def buscar_por_categoria(self, categoria):
@@ -19,7 +19,6 @@ class SistemaReportes:
                 resultados.append((categoria, nombre_reporte))
         return resultados
 
-# Ejemplo de uso
 if __name__ == "__main__":
     sistema = SistemaReportes()
 
