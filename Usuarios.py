@@ -1,7 +1,9 @@
 from Reporte import crear_reporte,mostrar_reportes_por_categoria
 from Categorias import visualizar_categorias
+from Notificaciones import Notificaciones
+notificador = Notificaciones()
 
-# Definimos la clase User
+# Definimos la clase User 
 class User:
     contador_id = 0
     def __init__(self, nombre, apellido, password, tipo_usuario):
@@ -52,13 +54,16 @@ def menu_ciudadano(usuario_actual, categorias):
         eleccion = input("Seleccione una opción: ")
 
         if eleccion == "1":
-             crear_reporte(usuario_actual, categorias) 
+            crear_reporte(usuario_actual, categorias) 
     #se despliega solo un menu para ver las categorias que hay con 1 puede salir y volver al menu ciudadano
         if eleccion == "2":
             visualizar_categorias()
     #logica para realizar una busqueda
         if eleccion == "3":
-             mostrar_reportes_por_categoria()
+            mostrar_reportes_por_categoria()
+    # Verificar y mostrar notificaciones
+        elif eleccion == "4":
+            notificador.obtener_notificaciones()
         elif eleccion == "5":
             print("Hasta luego.")
             break
@@ -67,4 +72,3 @@ def menu_ciudadano(usuario_actual, categorias):
 # si el rol es agente puede visualizar dicho reporte Falta la logica
 def visualizar_usuarios():
     pass
-
