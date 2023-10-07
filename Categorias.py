@@ -23,3 +23,12 @@ def visualizar_categorias():
     print(" Deforestación")
     print(" Contaminación del aire")
     print("1. Salir")
+
+    while True:
+        eleccion = input("Seleccione 1 para salir ")
+
+        if eleccion == "1":
+            print("Hasta luego.")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
