@@ -9,6 +9,6 @@ class Notificaciones:
       self.notificaciones = []
 
    def obtener_notificaciones(self):
-      mensaje = "Novedades"
+      mensaje = "Ver más+"
       print(f"Notificación : {mensaje}")
       return mensaje
