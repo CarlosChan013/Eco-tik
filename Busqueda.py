@@ -1,31 +1,42 @@
-import os
+class SistemaReportes:
+    def __init__(self):
+        self.reportes = {
+            "CategoriaA": ["Reporte1", "Reporte2"],
+            "CategoriaB": ["Reporte3", "Reporte4"]
+            # Agrega más categorías y reportes según sea necesario
+        }
 
-class BusquedaPorCategoria:
-    def __init__(self, categoria, directorio):
-        self.categoria = categoria
-        self.directorio = directorio
-    
-    def buscar_archivos(self):
+    def buscar_por_categoria(self, categoria):
+        if categoria in self.reportes:
+            return self.reportes[categoria]
+        else:
+            return []
+
+    def buscar_por_reporte(self, nombre_reporte):
         resultados = []
-        try:
-            for archivo in os.listdir(self.directorio):
-                if archivo.endswith('.py'):
-                    with open(os.path.join(self.directorio, archivo), 'r') as file:
-                        lineas = file.readlines()
-                        for linea in lineas:
-                            if self.categoria in linea:
-                                resultados.append(linea.strip())  # Agrega la línea que contiene la categoría a la lista de resultados
-        except FileNotFoundError:
-            print(f'Directorio {self.directorio} no encontrado.')
+        for categoria, reportes in self.reportes.items():
+            if nombre_reporte in reportes:
+                resultados.append((categoria, nombre_reporte))
         return resultados
 
 # Ejemplo de uso
 if __name__ == "__main__":
-    # Crea una instancia de la clase BusquedaPorCategoria para la categoría 'A'
-    busqueda_categoria_A = BusquedaPorCategoria('CategoriaA', 'ruta/a/tu/directorio')
-    # Realiza la búsqueda en la categoría 'A'
-    resultados_categoria_A = busqueda_categoria_A.buscar_archivos()
-    # Imprime los resultados encontrados en la categoría 'A'
-    print('Resultados en la categoría A:')
-    print(resultados_categoria_A)
+    sistema = SistemaReportes()
 
+    tipo_busqueda = input("¿Qué tipo de búsqueda desea realizar? (categoria/reporte): ")
+
+    if tipo_busqueda.lower() == "categoria":
+        categoria = input("Por favor, introduzca la categoría que desea buscar: ")
+        resultados = sistema.buscar_por_categoria(categoria)
+        print("Reportes encontrados en la categoría {}: {}".format(categoria, resultados))
+    elif tipo_busqueda.lower() == "reporte":
+        nombre_reporte = input("Por favor, introduzca el nombre del reporte que desea buscar: ")
+        resultados = sistema.buscar_por_reporte(nombre_reporte)
+        if resultados:
+            print("Reporte(s) encontrado(s):")
+            for categoria, reporte in resultados:
+                print("- Categoría: {}, Reporte: {}".format(categoria, reporte))
+        else:
+            print("No se encontraron reportes con ese nombre.")
+    else:
+        print("Opción de búsqueda no válida. Por favor, seleccione 'categoria' o 'reporte'.")
