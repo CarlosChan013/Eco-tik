@@ -1,10 +1,14 @@
+import time
+
 class Notificaciones:
-  
    contador_id = 0
 
-   def __init__(self, mensaje):
+   def __init__(self):
       Notificaciones.contador_id += 1
-
       self.id = Notificaciones.contador_id
-     
-      self.mensaje = mensaje
+      self.notificaciones = []
+
+   def obtener_notificaciones(self):
+      mensaje = "Novedades"
+      print(f"Notificación : {mensaje}")
+      return mensaje
